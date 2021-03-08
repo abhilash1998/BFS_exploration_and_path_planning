@@ -209,3 +209,347 @@ class exploration_r:
             #self.frontier_string.append(int(score))
             image=image.astype(np.uint8)
      return image,pos_0,pos_1
+     def right_move(self,image,pos_0,pos_1,cost):
+          """
+             This function makes a move in the right direction returns or update the
+             resultant node and checks if the move node is in the visited list
+             or unvisited list
+
+             Parameters
+             ----------
+             image: np.array
+                 It is a image of the  states from where in the exploration happens
+             pos_0 : Int
+                 x_coordinate of the current node
+             pos_1 : Int
+                 y_coordinate of the current node
+             cost : Int
+                It is cost for each step(Introduce to implement Djisktras in future)
+
+             Returns
+             -------
+             image: np.array
+                 It is a image of the  states after right move
+             pos_0 : Int
+                 x_coordinate of the  node after right move
+             pos_1 : Int
+                 y_coordinate of the node after right move
+          """
+          if pos_1<len(image[1])-1:
+
+
+              parent=self.string(pos_0,pos_1)
+               #parent=score
+              pos_1=pos_1+1
+
+              score=self.string(pos_0,pos_1)
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0])) or  np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+                  return image,pos_0,pos_1
+
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+          return image,pos_0,pos_1
+     def down_move(self,image,pos_0,pos_1,cost):
+           """
+              This function makes a move in the down direction returns or update the
+              resultant node and checks if the move node is in the visited list
+              or unvisited list
+
+              Parameters
+              ----------
+              image: np.array
+                  It is a image of the  states from where in the exploration happens
+              pos_0 : Int
+                  x_coordinate of the current node
+              pos_1 : Int
+                  y_coordinate of the current node
+              cost : Int
+                 It is cost for each step(Introduce to implement Djisktras in future)
+
+              Returns
+              -------
+              image: np.array
+                  It is a image of the  states after down move
+              pos_0 : Int
+                  x_coordinate of the  node after down move
+              pos_1 : Int
+                  y_coordinate of the node after down move
+           """
+           if pos_0<len(image)-1:
+              parent=self.string(pos_0,pos_1)
+
+
+              pos_0=pos_0+1
+
+
+              score=self.string(pos_0,pos_1)
+
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0])) or  np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+                  return image,pos_0,pos_1
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+           return image,pos_0,pos_1
+
+     def up_move(self,image,pos_0,pos_1,cost):
+          """
+              This function makes a move in the up direction returns or update the
+              resultant node and checks if the move node is in the visited list
+              or unvisited list
+
+              Parameters
+              ----------
+              image: np.array
+                  It is a image of the  states from where in the exploration happens
+              pos_0 : Int
+                  x_coordinate of the current node
+              pos_1 : Int
+                  y_coordinate of the current node
+              cost : Int
+                 It is cost for each step(Introduce to implement Djisktras in future)
+
+              Returns
+              -------
+              image: np.array
+                  It is a image of the  states after up move
+              pos_0 : Int
+                  x_coordinate of the  node after up move
+              pos_1 : Int
+                  y_coordinate of the node after up move
+          """
+          if pos_0>0:
+
+
+              temp=[pos_0,pos_1]
+
+              parent=self.string(pos_0,pos_1)
+
+              pos_0=pos_0-1
+
+
+
+              score=self.string(pos_0,pos_1)
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0])) or  np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+                  return image,pos_0,pos_1
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+          return image,pos_0,pos_1
+
+     def down_right_move(self,image,pos_0,pos_1,cost):
+          """
+              This function makes a move in the down right direction returns or update the
+              resultant node and checks if the move node is in the visited list
+              or unvisited list
+
+              Parameters
+              ----------
+              image: np.array
+                  It is a image of the  states from where in the exploration happens
+              pos_0 : Int
+                  x_coordinate of the current node
+              pos_1 : Int
+                  y_coordinate of the current node
+              cost : Int
+                 It is cost for each step(Introduce to implement Djisktras in future)
+
+              Returns
+              -------
+              image: np.array
+                  It is a image of the  states after down right move
+              pos_0 : Int
+                  x_coordinate of the  node after down right move
+              pos_1 : Int
+                  y_coordinate of the node after down right move
+          """
+          if pos_0<len(image)-1 and pos_1<len(image[0])-1:
+
+
+              parent=self.string(pos_0,pos_1)
+              pos_0=pos_0+1
+              pos_1=pos_1+1
+              score=self.string(pos_0,pos_1)
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0])) or np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+                  return image,pos_0,pos_1
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+          return image,pos_0,pos_1
+
+
+     def down_left_move(self,image,pos_0,pos_1,cost):
+          """
+              This function makes a move in the down left direction returns or update the
+              resultant node and checks if the move node is in the visited list
+              or unvisited list
+
+              Parameters
+              ----------
+              image: np.array
+                  It is a image of the  states from where in the exploration happens
+              pos_0 : Int
+                  x_coordinate of the current node
+              pos_1 : Int
+                  y_coordinate of the current node
+              cost : Int
+                 It is cost for each step(Introduce to implement Djisktras in future)
+
+              Returns
+              -------
+              image: np.array
+                  It is a image of the  states after down left move
+              pos_0 : Int
+                  x_coordinate of the  node after down left move
+              pos_1 : Int
+                  y_coordinate of the node after down left move
+          """
+          if pos_0<(len(image)-1) and pos_1>0:
+
+
+
+              parent=self.string(pos_0,pos_1)
+              pos_0=pos_0+1
+              pos_1=pos_1-1
+
+              score=self.string(pos_0,pos_1)
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0]))or np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+                  return image,pos_0,pos_1
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+          return image,pos_0,pos_1
+
+
+     def up_left_move(self,image,pos_0,pos_1,cost):
+          """
+              This function makes a move in the up left direction returns or update the
+              resultant node and checks if the move node is in the visited list
+              or unvisited list
+
+              Parameters
+              ----------
+              image: np.array
+                  It is a image of the  states from where in the exploration happens
+              pos_0 : Int
+                  x_coordinate of the current node
+              pos_1 : Int
+                  y_coordinate of the current node
+              cost : Int
+                 It is cost for each step(Introduce to implement Djisktras in future)
+
+              Returns
+              -------
+              image: np.array
+                  It is a image of the  states after up left move
+              pos_0 : Int
+                  x_coordinate of the  node after up left move
+              pos_1 : Int
+                  y_coordinate of the node after up left move
+          """
+          if pos_0>0 and pos_1>0:
+
+
+              parent=self.string(pos_0,pos_1)
+              # parent=score
+              pos_0=pos_0-1
+              pos_1=pos_1-1
+
+
+              score=self.string(pos_0,pos_1)
+
+
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0])) or np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])) :
+                  return image,pos_0,pos_1
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+
+          return image,pos_0,pos_1
+
+     def up_right_move(self,image,pos_0,pos_1,cost):
+          """
+              This function makes a move in the up right direction returns or update the
+              resultant node and checks if the move node is in the visited list
+              or unvisited list
+
+              Parameters
+              ----------
+              image: np.array
+                  It is a image of the  states from where in the exploration happens
+              pos_0 : Int
+                  x_coordinate of the current node
+              pos_1 : Int
+                  y_coordinate of the current node
+              cost : Int
+                 It is cost for each step(Introduce to implement Djisktras in future)
+
+              Returns
+              -------
+              image: np.array
+                  It is a image of the  states after up right move
+              pos_0 : Int
+                  x_coordinate of the  node after up right move
+              pos_1 : Int
+                  y_coordinate of the node after up right move
+          """
+          if pos_0>0 and pos_1<len(image[1])-1:
+
+              parent=self.string(pos_0,pos_1)
+
+              pos_0=pos_0-1
+              pos_1=pos_1+1
+
+              score=self.string(pos_0,pos_1)
+
+
+
+
+              if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0]))or np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+                  return image,pos_0,pos_1
+
+              else:
+
+                 self.parent_orignal_data[score]=parent
+                 self.data_with_string[score]=[pos_0,pos_1]
+                 image[299-pos_0,pos_1,:]=200,200,0
+                 self.frontier.append([pos_0,pos_1])
+                 #self.frontier_string.append(int(score))
+                 image=image.astype(np.uint8)
+          return image,pos_0,pos_1
