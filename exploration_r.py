@@ -116,3 +116,40 @@ class exploration_r:
             #print("self.expanded",self.expanded)
             return True
         return False
+        def string(self,pos_0,pos_1):
+            """
+            Converts the list of the state into string for easy comparison
+            when further converted into integer
+
+            Parameters
+            ----------
+            pos_0 : Int
+                x-coordinate of current state
+            pos_0 : Int
+                y-coordinate of current state
+
+            Returns
+            -------
+            c : str
+                String of the state
+
+            """
+
+            if pos_0 <10:
+                pos_0="00"+str(pos_0)
+            elif pos_0<100:
+                pos_0="0"+str(pos_0)
+
+
+            if pos_1 <10:
+                pos_1="00"+str(pos_1)
+            elif pos_1<100:
+                pos_1="0"+str(pos_1)
+
+
+            #pos
+            c=""
+
+            c=str(pos_0)+str(pos_1)
+            #print("c",c)
+            return c
