@@ -553,3 +553,58 @@ class exploration_r:
                  #self.frontier_string.append(int(score))
                  image=image.astype(np.uint8)
           return image,pos_0,pos_1
+    def expanding(self,pos_0,pos_1):
+        """
+            This function checks if the node is in expanded /visited list and
+            if it not then appends in the expanded list
+
+
+            Parameters
+            ----------
+
+            pos_0 : Int
+                x_coordinate of the current node
+            pos_1 : Int
+                y_coordinate of the current node
+
+            Returns
+            -------
+
+        """
+        cnvt_front=self.string(pos_0,pos_1)
+        if int(cnvt_front) in self.expanded:
+
+            a=1
+        else:
+            self.expanded.append(int(cnvt_front))
+
+    def frontier_list(self):
+        """
+            This function checks if the node is in expanded/visited list  and
+            pops out untill it finds a node that has not been visited/expanded.
+
+
+            Parameters
+            ----------
+
+            Returns
+            -------
+
+            pos_0 : Int
+                x_coordinate of the current node
+            pos_1 : Int
+                y_coordinate of the current node
+
+
+
+        """
+        pos_0,pos_1=self.frontier.pop(0)
+        self.current_score=self.string(pos_0,pos_1)
+        if int(self.current_score) in self.expanded:
+
+             self.frontier_list()
+        elif int(self.current_score) in self.obstacle:
+             self.frontier_list()
+        #print("frontierlist",self.frontier)
+        #print("expanded",self.expanded)
+        return pos_0,pos_1
