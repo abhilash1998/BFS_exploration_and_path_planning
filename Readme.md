@@ -6,8 +6,9 @@ Libraries and command to install those:
 
     Virtual Evirobnment with Python 3.7 : conda create -n myenv python=3.7 
     Numpy : conda install -c anaconda numpy
-    Matplotlib -: conda install -c conda-forge matplotlib 
-    Imutils - conda install -c conda-forge imutils
+    Matplotlib : conda install -c conda-forge matplotlib 
+    Imutils : conda install -c conda-forge imutils
+    Opencv : conda install -c conda-forge opencv=4.0.1
 
 Instruction to run the code:
 
@@ -18,7 +19,7 @@ Instruction to run the code:
     3. Install the Libraries and dependency
         conda install -c anaconda numpy
         conda install -c conda-forge matplotlib 
-	      conda install -c conda-forge opencv=4.0.1
+        conda install -c conda-forge opencv=4.0.1
         conda install -c conda-forge imutils
     4. The file contaions 2 script BFS_point.py and exploration_r.py and video respectively
 	      So exploration_r.py files is a file or class module that has all the function related
