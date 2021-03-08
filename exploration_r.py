@@ -116,40 +116,96 @@ class exploration_r:
             #print("self.expanded",self.expanded)
             return True
         return False
-        def string(self,pos_0,pos_1):
-            """
-            Converts the list of the state into string for easy comparison
-            when further converted into integer
+    def string(self,pos_0,pos_1):
+        """
+        Converts the list of the state into string for easy comparison
+        when further converted into integer
 
-            Parameters
-            ----------
-            pos_0 : Int
-                x-coordinate of current state
-            pos_0 : Int
-                y-coordinate of current state
+        Parameters
+        ----------
+        pos_0 : Int
+            x-coordinate of current state
+        pos_0 : Int
+            y-coordinate of current state
 
-            Returns
-            -------
-            c : str
-                String of the state
+        Returns
+        -------
+        c : str
+            String of the state
 
-            """
+        """
 
-            if pos_0 <10:
-                pos_0="00"+str(pos_0)
-            elif pos_0<100:
-                pos_0="0"+str(pos_0)
-
-
-            if pos_1 <10:
-                pos_1="00"+str(pos_1)
-            elif pos_1<100:
-                pos_1="0"+str(pos_1)
+        if pos_0 <10:
+            pos_0="00"+str(pos_0)
+        elif pos_0<100:
+            pos_0="0"+str(pos_0)
 
 
-            #pos
-            c=""
+        if pos_1 <10:
+            pos_1="00"+str(pos_1)
+        elif pos_1<100:
+            pos_1="0"+str(pos_1)
 
-            c=str(pos_0)+str(pos_1)
-            #print("c",c)
-            return c
+
+        #pos
+        c=""
+
+        c=str(pos_0)+str(pos_1)
+        #print("c",c)
+        return c
+    def left_move(self,image,pos_0,pos_1,cost):
+     """
+
+     This function makes a move in the left direction returns or update the
+     resultant node and checks if the move node is in the visited list
+     or unvisited list
+
+     Parameters
+     ----------
+     image: np.array
+         It is a image of the  states from where in the exploration happens
+     pos_0 : Int
+         x_coordinate of the current node
+     pos_1 : Int
+         y_coordinate of the current node
+     cost : Int
+        It is cost for each step(Introduce to implement Djisktras in future)
+
+     Returns
+     -------
+     image: np.array
+         It is a image of the  states after left move
+     pos_0 : Int
+         x_coordinate of the  node after left move
+     pos_1 : Int
+         y_coordinate of the node after left move
+
+     """
+     if pos_1>0:
+         #solve_t=solve_a
+         #solve_t=deepcopy(list(solve_a))
+         #temp1=deepcopy(list(solve_a))
+
+         #temp=[pos_0,pos_1]
+         parent=self.string(pos_0,pos_1)
+             #temp.clear()
+             #parent=score
+         pos_1=pos_1-1
+
+
+
+         score=self.string(pos_0,pos_1)
+
+
+         if np.array_equiv(image[299-pos_0,pos_1,:],np.array([0,0,0])) or  np.array_equiv(image[299-pos_0,pos_1,:],np.array([200,200,0])):
+             return image,pos_0,pos_1
+
+         else:
+
+            self.parent_orignal_data[score]=parent
+            self.data_with_string[score]=[pos_0,pos_1]
+            image[299-pos_0,pos_1,:]=200,200,0
+            self.frontier.append([pos_0,pos_1])
+            #self.frontier_string.append(int(score))
+            image=image.astype(np.uint8)
+     return image,pos_0,pos_1
