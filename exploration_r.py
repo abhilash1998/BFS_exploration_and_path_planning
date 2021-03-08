@@ -34,3 +34,30 @@ class exploration_r:
         self.data_with_string={}
 
         self.current_score="00"
+
+
+    def obstacles_form(self,image):
+        """
+        Create all obstacles in the images by calling various obstacle functions
+
+        Parameters
+        ----------
+        image : np.array
+            InputsImage for adding obstacle
+        """
+        major_axis=60
+        minor_axis=30
+        c_y=246
+        c_x=145
+        c_y1=90
+        c_x1=70
+        radius=35
+        for i in range(len(image)):
+            for  j in range(len(image[0])):
+
+                self.ellipse(image,major_axis,minor_axis,i,j,c_x,c_y)
+                self.circle(image,radius,i,j,c_x1,c_y1)
+                self.slanted_rect(image,i,j)
+                self.polygon(image,i,j)
+                self.c_shape(image,i,j)
+        #exploration.c_shape(image,i,j)
