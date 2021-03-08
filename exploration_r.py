@@ -91,3 +91,28 @@ class exploration_r:
         else:
             #print(2)
             return True
+    def goal_reached(self):
+        """
+        Checks if the goal is reached or not if reached return True
+        and if not reached continues exploring
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        Boolean : bool
+            True or False depending on the current state reached the goal or not
+
+        """
+        pos_0=self.goal[0]
+        pos_1=self.goal[1]
+        self.start_score=self.string(self.start[0],self.start[1])
+        self.data_with_string[self.start_score]=self.start
+        self.goal_score=self.string(pos_0,pos_1)
+        if int(self.current_score) ==int(self.goal_score) :
+            print("goal_reached")
+            #print(len(self.expanded))
+            #print("self.expanded",self.expanded)
+            return True
+        return False
