@@ -29,4 +29,4 @@ Instruction to run the code:
     6. Please enter the x coordinate y coordinate of the state and then x coordinate and y coordiante of the goal
     7.It shows when goal is reached and then prints the Path
     8. It explore little more states after reaching the goal. 
-
+    9. Proper mapping can be seen in the visualisation itself	
